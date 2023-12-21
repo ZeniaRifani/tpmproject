@@ -17,8 +17,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/create">Create</a>
-
+          <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Tutorial Videos</a>
@@ -45,32 +44,30 @@
     </div>
   </div>
 </nav>
-
-    <h1 class="text-center">My Recipes</h1>
-    <div class="d-flex flex-row justify-content-center gap-5">
-    @foreach ($recipes as $b)
-    <div class="card" style="width: 18rem;">
-    <img src="{{asset('/storage/image/'.$b->image)}}" class="card-img-top" alt="">
-    <div class="card-body">
-        <h5 class="card-title">{{$b->name}}</h5>
-        <p class="card-text">Category: {{$b->category->category_name}}</p>
-        <p class="card-text">Origin: {{$b->origin}}</p>
-        <p class="card-text">Recipe Publication Date: {{$b->publication_date}}</p>
-        <p class="card-text">Steps to Make: {{$b->steps}}</p>
-        <a href="#" class="btn btn-primary">Cook!</a>
-        <a href="{{route('edit',$b->id)}}" class="btn btn-success">Edit</a>
-
-        <form action="{{route('delete',$b->id)}}" method="POST">
-            @csrf
-                @method('delete')
-                <button type="submit" class="btn btn-danger">Delete</button>
+<div class="p-5">
+    <h1 class="text-center">Create a Recipe</h1>
+        <form action="{{route('update',$recipes->id)}}" method = "POST">
+          @csrf
+          @method('patch')
+        <div class="mb-3">
+            <label for="" class="form-label">Name of The Food</label>
+            <input value="{{$recipes->name}}" type="text" class="form-control" id="" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Origin</label>
+            <input value="{{$recipes->origin}}" type="text" class="form-control" id="" name="origin">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Publication Date</label>
+            <input value="{{$recipes->publication_date}}" type="date" class="form-control" id="" name="publication_date">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Steps</label>
+            <input value="{{$recipes->steps}}" type="number" class="form-control" id="" name="steps">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-
-     </div>
     </div>
-    @endforeach
-</div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

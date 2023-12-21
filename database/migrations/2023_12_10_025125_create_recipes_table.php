@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('origin');
             $table->date('publication_date');
             $table->integer('steps');
+            $table->string('image');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

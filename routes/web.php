@@ -20,3 +20,6 @@ use App\Http\Controllers\RecipesController;
 Route::get('/',[RecipesController::class,'show'])->name('show');
 Route::get('/create',[RecipesController::class,'create'])->name('create');
 Route::post('/store',[RecipesController::class,'store'])->name('store');
+Route::get('/edit/{id}',[RecipesController::class,'edit'])->name('edit');
+Route::patch('/update/{id}',[RecipesController::class,'update'])->name('update');
+Route::delete('/delete/{id}',[RecipesController::class,'delete'])->name('delete');
